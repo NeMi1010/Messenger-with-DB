@@ -90,7 +90,8 @@ while True :
 		title = (conn.recv(1024)).decode('utf-8')
 		MSG = (conn.recv(1024)).decode('utf-8')
 		print("Message Received " + tmp_rcv)
-		SQL = "INSERT INTO " + message_table + " (title, message, sender, receiver, send_date, ischeck) VALUES (%s,%s,%s,%s,now(),0)"
+		SQL = "INSERT INTO " + message_table + \
+		" (title, message, sender, receiver, send_date, ischeck) VALUES (%s,%s,%s,%s,now(),0)"
 		DATA = (title, MSG, tmp_id, tmp_rcv)
 		curs.execute(SQL, DATA)
 		connDB.commit()
