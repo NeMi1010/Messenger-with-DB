@@ -49,7 +49,15 @@ while True :
 		s.sendall(tmp.encode())
 		print("Good Bye " + userName)
 		break
-	if tmp is '3':
+	elif tmp is '2':
+		s.sendall(tmp.encode())
+		tmp_rcv = input("To whom? : ")
+		tmp_title = input(">> Title : ")
+		tmp_msg = input("Message : ")
+		s.sendall(tmp_rcv.encode())
+		s.sendall(tmp_title.encode())
+		s.sendall(tmp_msg.encode())	
+	elif tmp is '3':
 		s.sendall(tmp.encode())
 		messageNum = 0
 		data = (s.recv(1024)).decode('utf-8')
