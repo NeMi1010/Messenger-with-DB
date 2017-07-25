@@ -85,6 +85,16 @@ while True :
 	if data is '1' :
 		print("" + clientName + " has been disconnected")
 		break
+	if data is '2' :
+		tmp_rcv = (conn.recv(1024)).decode('utf-8')
+		title = (conn.recv(1024)).decode('utf-8')
+		MSG = (conn.recv(1024)).decode('utf-8')
+		print("Message Received " + tmp_rcv)
+		SQL = "INSERT INTO " + message_table + " (title, message, sender, receiver, send_date, ischeck) VALUES (%s,%s,%s,%s,now(),0)"
+		DATA = (title, MSG, tmp_id, tmp_rcv)
+		curs.execute(SQL, DATA)
+		connDB.commit()
+		print("Successfully Received FROM " + tmp_id + " TO " + tmp_rcv)
 	if data is '3':
 		print("Message Request from " + clientName)
 		curs.execute("SELECT * FROM " + message_table + " WHERE receiver = '"
